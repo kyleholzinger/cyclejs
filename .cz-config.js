@@ -1,17 +1,11 @@
 'use strict';
+var fs = require('fs');
 
-var packageScopes = [
-  'devtool',
-  'dom',
-  'html',
-  'history',
-  'http',
-  'isolate',
-  'jsonp',
-  'most-run',
-  'run',
-  'rxjs-run'
-];
+var packageScopes = fs
+  .readFileSync('.scripts/RELEASABLE_PACKAGES', 'ascii')
+  .split('\n')
+  .map(s => s.trim())
+  .filter(s => !!s);
 
 var otherScopes = [
   'META',
